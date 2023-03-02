@@ -509,3 +509,16 @@ h6,
 		margin-bottom: -75px;
 	}
 }
+
+.c-text {
+	max-width: 900px;
+}
+
+@media (max-width: 480px) {
+	.c-text {
+		max-width: 95% !important;
+	}
+	.c-title {
+		font-size: clamp(20px, 5vw, 30px) !important;
+	}
+}
