@@ -144,3 +144,13 @@
 
 })(jQuery);
 
+const minhaImagem = document.getElementById('logoImg');
+const srcOriginal = minhaImagem.getAttribute('src');
+
+window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 0) {
+        minhaImagem.setAttribute('src', './img/logo.png');
+    } else {
+        minhaImagem.setAttribute('src', srcOriginal);
+    }
+});
