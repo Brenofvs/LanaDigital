@@ -146,11 +146,30 @@
 
 const minhaImagem = document.getElementById('logoImg');
 const srcOriginal = minhaImagem.getAttribute('src');
+let eventoScroll;
 
-window.addEventListener('scroll', function () {
-    if (window.pageYOffset > 0) {
-        minhaImagem.setAttribute('src', './img/logo.png');
+function atualizaImagem() {
+    if (window.innerWidth > 991) {
+        if (!eventoScroll) {
+            eventoScroll = function () {
+                if (window.pageYOffset == 0) {
+                    minhaImagem.setAttribute('src', './img/logo-w.png');
+                } else {
+                    minhaImagem.setAttribute('src', srcOriginal);
+                }
+            };
+            window.addEventListener('scroll', eventoScroll);
+        }
+        minhaImagem.setAttribute('src', './img/logo-w.png');
     } else {
-        minhaImagem.setAttribute('src', srcOriginal);
+        if (eventoScroll) {
+            window.removeEventListener('scroll', eventoScroll);
+            eventoScroll = null;
+        }
+        minhaImagem.setAttribute('src', './img/logo.png');
     }
-});
+}
+
+atualizaImagem();
+
+window.addEventListener('resize', atualizaImagem);
